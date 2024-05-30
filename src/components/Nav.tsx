@@ -8,7 +8,7 @@ export default function Nav() {
   }
 
   return (
-    <nav class="bg-neutral-800 bg-opacity-70 backdrop-blur-sm sticky top-0">
+    <nav class="bg-neutral-800 bg-opacity-70 backdrop-blur-sm sticky top-0 z-50">
       <div class="container flex justify-between p-3 text-gray-200">
         <h1 class="text-3xl font-bold"><A href="/">SecuModule</A></h1>
         <ul class="items-center flex gap-3">
