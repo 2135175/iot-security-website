@@ -1,7 +1,6 @@
 import ModuleActionBtn from "@/components/ModuleActionBtn";
 import RecentEventsTable from "@/components/RecentEventsTable";
-import { Table } from "@/components/ui/table";
-import useRecentEvents from "@/hooks/useRecentEvents";
+import { useNavigate } from "@solidjs/router";
 import {
   FiBell,
   FiBellOff,
@@ -11,6 +10,7 @@ import {
 } from "solid-icons/fi";
 
 export default function Home() {
+  const navigate = useNavigate();
   const recentEventCount = 10;
 
   return (
@@ -50,7 +50,9 @@ export default function Home() {
             <ModuleActionBtn
               name="Logs"
               icon={<FiTerminal size={96} stroke-width={0.5} />}
-              action={async () => {}}
+              action={async () => {
+                navigate("/logs");
+              }}
             />
           </li>
         </ul>

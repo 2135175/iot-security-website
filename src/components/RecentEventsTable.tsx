@@ -1,4 +1,4 @@
-import useRecentEvents from "@/hooks/useRecentEvents";
+import useEvents from "@/hooks/useEvents";
 import {
   Table,
   TableBody,
@@ -14,7 +14,7 @@ interface RecentEventsTableProps {
 }
 
 export default function RecentEventsTable(props: RecentEventsTableProps) {
-  const events = useRecentEvents(props.count);
+  const events = useEvents(props.count);
 
   return (
     <Table>
@@ -36,7 +36,7 @@ export default function RecentEventsTable(props: RecentEventsTableProps) {
           return (
             <TableRow>
               <TableCell>{val.origin}</TableCell>
-              <TableCell>{val.action}</TableCell>
+              <TableCell>{val.eventAction}</TableCell>
               <TableCell class="text-right">{val.date}</TableCell>
               <TableCell>{val.time}</TableCell>
             </TableRow>
