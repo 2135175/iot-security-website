@@ -1,11 +1,14 @@
 import {
   ColumnDef,
+  SortingState,
   createSolidTable,
   flexRender,
   getCoreRowModel,
+  getFilteredRowModel,
   getPaginationRowModel,
+  getSortedRowModel,
 } from "@tanstack/solid-table";
-import { Accessor, For, Show, splitProps } from "solid-js";
+import { Accessor, For, Show, createSignal, splitProps } from "solid-js";
 import {
   Table,
   TableBody,
@@ -14,7 +17,6 @@ import {
   TableHeader,
   TableRow,
 } from "./ui/table";
-import { Button } from "./ui/button";
 import {
   Pagination,
   PaginationEllipsis,
@@ -31,6 +33,7 @@ type Props<TData, TValue> = {
 
 export const DataTable = <TData, TValue>(props: Props<TData, TValue>) => {
   const [local] = splitProps(props, ["columns", "data"]);
+  const [sorting, setSorting] = createSignal<SortingState>([]);
 
   const table = createSolidTable({
     get data() {
@@ -39,10 +42,18 @@ export const DataTable = <TData, TValue>(props: Props<TData, TValue>) => {
     columns: local.columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
+    onSortingChange: setSorting,
+    getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    state: {
+      get sorting() {
+        return sorting();
+      },
+    },
   });
 
   return (
-    <div class="dark">
+    <div class="flex flex-col gap-2">
       <Table>
         <TableHeader>
           <For each={table.getHeaderGroups()}>
@@ -100,7 +111,7 @@ export const DataTable = <TData, TValue>(props: Props<TData, TValue>) => {
         </TableBody>
       </Table>
       <Pagination
-        fixedItems={table.getPageCount() > 5}
+        fixedItems={table.getPageCount() > 6}
         count={table.getPageCount()}
         itemComponent={(props) => (
           <PaginationItem

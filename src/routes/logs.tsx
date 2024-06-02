@@ -1,5 +1,4 @@
 import { EventsDataTable } from "@/components/EventsDataTable";
-import { A } from "@solidjs/router";
 
 export default function About() {
   return (
