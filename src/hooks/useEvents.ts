@@ -392,14 +392,15 @@ async function getEvents(count: number): Promise<Event[]> {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(events.slice(events.length - count));
-    }, 5000);
+    }, 2500);
   });
 }
 
 export default function useEvents(count: number) {
-  // TODO: Get from DB
+  //TODO: Get from DB
   return createQuery(() => ({
     queryKey: ["events", count],
     queryFn: () => getEvents(count),
+    refetchInterval: 60 * 1000,
   }));
 }
