@@ -8,6 +8,7 @@ import {
   FiMoreHorizontal,
   FiTrash,
 } from "solid-icons/fi";
+import { Match, Switch } from "solid-js";
 
 export const columns: ColumnDef<Event>[] = [
   { accessorKey: "origin", header: "Origin" },
@@ -71,7 +72,13 @@ export const columns: ColumnDef<Event>[] = [
 ];
 
 export const EventsDataTable = () => {
-  const data = () => useEvents(1000);
+  const eventsQuery = useEvents(1000);
 
-  return <DataTable data={data} columns={columns} />;
+  return (
+    <Switch>
+      <Match when={eventsQuery.isLoading}>Loading ...</Match>
+      <Match when={eventsQuery.isError}>Something went wrong</Match>
+      <Match when={eventsQuery.isSuccess}><DataTable data={eventsQuery.data} columns={columns} /></Match>
+    </Switch>
+  );
 };

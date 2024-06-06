@@ -14,6 +14,7 @@ export default function Home() {
   const recentEventCount = 10;
 
   return (
+
     <main class="container py-12">
       <div class="p-3 bg-neutral-800 grow bg-opacity-70 backdrop-blur-sm text-neutral-200 rounded-md flex-col flex gap-5">
         <h1 class="text-2xl font-bold">Module Actions</h1>

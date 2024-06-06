@@ -28,7 +28,7 @@ import {
 
 type Props<TData, TValue> = {
   columns: ColumnDef<TData, TValue>[];
-  data: Accessor<TData[] | undefined>;
+  data: TData[] | undefined;
 };
 
 export const DataTable = <TData, TValue>(props: Props<TData, TValue>) => {
@@ -37,7 +37,7 @@ export const DataTable = <TData, TValue>(props: Props<TData, TValue>) => {
 
   const table = createSolidTable({
     get data() {
-      return local.data() || [];
+      return local.data || [];
     },
     columns: local.columns,
     getCoreRowModel: getCoreRowModel(),
