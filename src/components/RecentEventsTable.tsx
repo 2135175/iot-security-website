@@ -11,6 +11,7 @@ import { For, Match, Switch } from "solid-js";
 import { formatDate } from "@/libs/dateUtils";
 import { createQuery } from "@tanstack/solid-query";
 import { getEvents } from "@/hooks/useEvents";
+import { FiLoader } from "solid-icons/fi";
 
 interface RecentEventsTableProps {
   count: number;
@@ -34,12 +35,10 @@ export default function RecentEventsTable(props: RecentEventsTableProps) {
         <p>Last attempt: {formatDate(eventsQuery.errorUpdatedAt)}</p>
       </Match>
       <Match when={eventsQuery.isSuccess}>
-        <p class="text-right">
-          Last data update:{" "}
-          {eventsQuery.isPlaceholderData
-            ? "Now"
-            : formatDate(eventsQuery.dataUpdatedAt)}
-        </p>
+        <div class="flex justify-end gap-3">
+          <p>Last data update: </p>
+          {formatDate(eventsQuery.dataUpdatedAt)}
+        </div>
         <Table>
           <TableCaption class="text-neutral-200">
             The last {eventsQuery.data?.events.length} events

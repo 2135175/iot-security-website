@@ -24,6 +24,7 @@ import {
   PaginationPrevious,
 } from "./ui/pagination";
 import { createQuery } from "@tanstack/solid-query";
+import { FiLoader } from "solid-icons/fi";
 
 export const columns: ColumnDef<Event>[] = [
   { accessorKey: "origin", header: "Origin" },
@@ -59,12 +60,16 @@ export const EventsDataTable = () => {
         <p>Last attempt: {formatDate(eventsQuery.errorUpdatedAt)}</p>
       </Match>
       <Match when={eventsQuery.isSuccess}>
-        <p class="text-right">
-          Last data update:{" "}
-          {eventsQuery.isPlaceholderData
-            ? "Now"
-            : formatDate(eventsQuery.dataUpdatedAt)}
-        </p>
+        <div class="flex justify-end gap-3">
+          <p>Last data update: </p>
+          <span>
+            {eventsQuery.isPlaceholderData ? (
+              <FiLoader class="animate-spin h-full aspect-square" />
+            ) : (
+              formatDate(eventsQuery.dataUpdatedAt)
+            )}
+          </span>
+        </div>
         <DataTable
           isPlaceholder={eventsQuery.isPlaceholderData}
           data={eventsQuery.data?.events}
