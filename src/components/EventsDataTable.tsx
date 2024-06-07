@@ -54,8 +54,17 @@ export const EventsDataTable = () => {
   return (
     <Switch>
       <Match when={eventsQuery.isLoading}>Loading ...</Match>
-      <Match when={eventsQuery.isError}>Something went wrong</Match>
+      <Match when={eventsQuery.isError}>
+        <h1 class="text-xl font-bold">An error occured while fetching data.</h1>
+        <p>Last attempt: {formatDate(eventsQuery.errorUpdatedAt)}</p>
+      </Match>
       <Match when={eventsQuery.isSuccess}>
+        <p class="text-right">
+          Last data update:{" "}
+          {eventsQuery.isPlaceholderData
+            ? "Now"
+            : formatDate(eventsQuery.dataUpdatedAt)}
+        </p>
         <DataTable
           isPlaceholder={eventsQuery.isPlaceholderData}
           data={eventsQuery.data?.events}

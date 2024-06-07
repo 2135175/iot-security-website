@@ -29,8 +29,17 @@ export default function RecentEventsTable(props: RecentEventsTableProps) {
   return (
     <Switch>
       <Match when={eventsQuery.isLoading}>Loading...</Match>
-      <Match when={eventsQuery.isError}>Whoops!</Match>
+      <Match when={eventsQuery.isError}>
+        <h1 class="text-xl font-bold">An error occured while fetching data.</h1>
+        <p>Last attempt: {formatDate(eventsQuery.errorUpdatedAt)}</p>
+      </Match>
       <Match when={eventsQuery.isSuccess}>
+        <p class="text-right">
+          Last data update:{" "}
+          {eventsQuery.isPlaceholderData
+            ? "Now"
+            : formatDate(eventsQuery.dataUpdatedAt)}
+        </p>
         <Table>
           <TableCaption class="text-neutral-200">
             The last {eventsQuery.data?.events.length} events
