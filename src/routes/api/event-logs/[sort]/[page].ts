@@ -1,4 +1,315 @@
+import { ActionOrigin, EventActionType } from "@/hooks/useEvents";
 import { APIEvent } from "node_modules/@solidjs/start/dist/server";
+import { Event } from "@/hooks/useEvents";
+import { pageSize } from "../page-size";
+
+const events: Event[] = [
+  {
+    origin: ActionOrigin.MODULE,
+    eventAction: EventActionType.ARM,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+  {
+    origin: ActionOrigin.DASHBOARD,
+    eventAction: EventActionType.UNLOCK,
+    timestamp: 1717729222,
+  },
+];
 
 export async function GET({ params }: APIEvent) {
   const pageNum = parseInt(params.page);
@@ -17,7 +328,13 @@ export async function GET({ params }: APIEvent) {
     `Request to get page ${params.page} of event-logs sorted in ${params.sort} order`
   );
 
-  let data: Event[] = []
+  let startIndex = (pageNum - 1) * pageSize;
+  let endIndex = startIndex + pageSize;
 
-  return new Response(JSON.stringify({data: data}), { status: 200, statusText: "Ok" });
+  return {
+    page: pageNum,
+    pages: Math.ceil(events.length / pageSize),
+    rows: events.length,
+    events: events.slice(startIndex, endIndex),
+  };
 }

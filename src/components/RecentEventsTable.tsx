@@ -9,13 +9,15 @@ import {
   TableRow,
 } from "./ui/table";
 import { For, Match, Switch } from "solid-js";
+import moment from "moment";
+import { formatDate } from "@/libs/dateUtils";
 
 interface RecentEventsTableProps {
   count: number;
 }
 
 export default function RecentEventsTable(props: RecentEventsTableProps) {
-  const eventsQuery = useEvents(props.count);
+  const eventsQuery = useEvents("des", 1);
 
   return (
     <Switch>
@@ -24,7 +26,7 @@ export default function RecentEventsTable(props: RecentEventsTableProps) {
       <Match when={eventsQuery.isSuccess}>
         <Table>
           <TableCaption class="text-neutral-200">
-            The last {eventsQuery.data?.length} events
+            The last {eventsQuery.data?.events.length} events
           </TableCaption>
           <TableHeader>
             <TableRow>
@@ -33,19 +35,22 @@ export default function RecentEventsTable(props: RecentEventsTableProps) {
               <TableHead class="text-neutral-200 font-bold text-right">
                 Date
               </TableHead>
-              <TableHead class="text-neutral-200 font-bold">Time</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            <For each={eventsQuery.data}>
-              {(event) => (
-                <TableRow>
-                  <TableCell>{event.origin}</TableCell>
-                  <TableCell>{event.eventAction}</TableCell>
-                  <TableCell class="text-right">{event.date}</TableCell>
-                  <TableCell>{event.time}</TableCell>
-                </TableRow>
-              )}
+            <For each={eventsQuery.data?.events}>
+              {(event) => {
+                console.log(event.timestamp);
+                return (
+                  <TableRow>
+                    <TableCell>{event.origin}</TableCell>
+                    <TableCell>{event.eventAction}</TableCell>
+                    <TableCell class="text-right">
+                      {formatDate(event.timestamp)}
+                    </TableCell>
+                  </TableRow>
+                );
+              }}
             </For>
           </TableBody>
         </Table>
