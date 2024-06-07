@@ -331,10 +331,16 @@ export async function GET({ params }: APIEvent) {
   let startIndex = (pageNum - 1) * pageSize;
   let endIndex = startIndex + pageSize;
 
-  return {
-    page: pageNum,
-    pages: Math.ceil(events.length / pageSize),
-    rows: events.length,
-    events: events.slice(startIndex, endIndex),
-  };
+  return await new Promise((resolve) =>
+    setTimeout(
+      () =>
+        resolve({
+          page: pageNum,
+          pages: Math.ceil(events.length / pageSize),
+          rows: events.length,
+          events: events.slice(startIndex, endIndex),
+        }),
+      1000
+    )
+  );
 }
