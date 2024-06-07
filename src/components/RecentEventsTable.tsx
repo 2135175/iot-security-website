@@ -1,4 +1,3 @@
-import useEvents from "@/hooks/useEvents";
 import {
   Table,
   TableBody,
@@ -9,15 +8,23 @@ import {
   TableRow,
 } from "./ui/table";
 import { For, Match, Switch } from "solid-js";
-import moment from "moment";
 import { formatDate } from "@/libs/dateUtils";
+import { createQuery } from "@tanstack/solid-query";
+import { getEvents } from "@/hooks/useEvents";
 
 interface RecentEventsTableProps {
   count: number;
 }
 
 export default function RecentEventsTable(props: RecentEventsTableProps) {
-  const eventsQuery = useEvents("des", 1);
+  const eventsQuery = createQuery(() => ({
+    queryKey: ["events", "des", 1],
+    queryFn: () => getEvents("des", 1),
+    refetchInterval: 2 * 60 * 1000,
+    deferStream: true,
+    gcTime: 60 * 1000,
+    placeholderData: (previous) => previous,
+  }));
 
   return (
     <Switch>
@@ -39,18 +46,15 @@ export default function RecentEventsTable(props: RecentEventsTableProps) {
           </TableHeader>
           <TableBody>
             <For each={eventsQuery.data?.events}>
-              {(event) => {
-                console.log(event.timestamp);
-                return (
-                  <TableRow>
-                    <TableCell>{event.origin}</TableCell>
-                    <TableCell>{event.eventAction}</TableCell>
-                    <TableCell class="text-right">
-                      {formatDate(event.timestamp)}
-                    </TableCell>
-                  </TableRow>
-                );
-              }}
+              {(event) => (
+                <TableRow>
+                  <TableCell>{event.origin}</TableCell>
+                  <TableCell>{event.eventAction}</TableCell>
+                  <TableCell class="text-right">
+                    {formatDate(event.timestamp)}
+                  </TableCell>
+                </TableRow>
+              )}
             </For>
           </TableBody>
         </Table>

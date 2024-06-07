@@ -30,7 +30,7 @@ export const columns: ColumnDef<Event>[] = [
   { accessorKey: "eventAction", header: "Action" },
   {
     accessorKey: "timestamp",
-    header: ({ header }) => {
+    header: ({ header: _ }) => {
       return <p class="text-right">Date</p>;
     },
     cell: ({ cell }) => {
