@@ -340,7 +340,7 @@ export async function GET({ params }: APIEvent) {
           rows: events.length,
           events: events.slice(startIndex, endIndex),
         }),
-      1000
+      5000
     )
   );
 }

@@ -23,7 +23,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "./ui/pagination";
-import { createQuery } from "@tanstack/solid-query";
+import { createQuery, useQueryClient } from "@tanstack/solid-query";
 import { FiLoader } from "solid-icons/fi";
 
 export const columns: ColumnDef<Event>[] = [
@@ -41,6 +41,7 @@ export const columns: ColumnDef<Event>[] = [
 ];
 
 export const EventsDataTable = () => {
+  const queryClient = useQueryClient();
   const [page, setPage] = createSignal(1);
   const [sort, setSort] = createSignal<"des" | "asc">("des");
   const eventsQuery = createQuery(() => ({
@@ -82,6 +83,13 @@ export const EventsDataTable = () => {
           itemComponent={(props) => (
             <PaginationItem
               page={props.page}
+              onMouseOver={() => {
+                queryClient.prefetchQuery({
+                  queryKey: ["events", sort(), props.page],
+                  queryFn: () => getEvents(sort(), props.page),
+                  gcTime: 30 * 1000,
+                });
+              }}
               onClick={() => setPage(props.page)}
             >
               {props.page}
@@ -89,9 +97,27 @@ export const EventsDataTable = () => {
           )}
           ellipsisComponent={() => <PaginationEllipsis />}
         >
-          <PaginationPrevious onClick={() => setPage(page() - 1)} />
+          <PaginationPrevious
+            onMouseOver={() => {
+              queryClient.prefetchQuery({
+                queryKey: ["events", sort(), page() - 1],
+                queryFn: () => getEvents(sort(), page() - 1),
+                gcTime: 30 * 1000,
+              });
+            }}
+            onClick={() => setPage(page() - 1)}
+          />
           <PaginationItems />
-          <PaginationNext onClick={() => setPage(page() + 1)} />
+          <PaginationNext
+            onMouseOver={() => {
+              queryClient.prefetchQuery({
+                queryKey: ["events", sort(), page() + 1],
+                queryFn: () => getEvents(sort(), page() + 1),
+                gcTime: 30 * 1000,
+              });
+            }}
+            onClick={() => setPage(page() + 1)}
+          />
         </Pagination>
       </Match>
     </Switch>

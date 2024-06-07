@@ -4,7 +4,7 @@ import { Button } from "./ui/button";
 interface ActionCardProps {
   icon: JSX.Element;
   name: string;
-  action: () => Promise<void>;
+  action: () => void;
 }
 
 export default function ModuleActionBtn(props: ActionCardProps) {

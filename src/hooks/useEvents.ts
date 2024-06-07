@@ -10,7 +10,7 @@ export enum EventActionType {
   DISARM = "Disarm",
 }
 
-export interface Event {
+export type Event = {
   origin: ActionOrigin;
   eventAction: EventActionType;
   timestamp: number;
