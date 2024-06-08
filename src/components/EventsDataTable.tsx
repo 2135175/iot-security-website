@@ -55,14 +55,19 @@ export const EventsDataTable = () => {
 
   return (
     <Switch>
-      <Match when={eventsQuery.isLoading}>Loading ...</Match>
+      <Match when={eventsQuery.isLoading}>
+        <span class="flex gap-1">
+          Loading
+          <FiLoader class="animate-spin my-auto" />
+        </span>
+      </Match>
       <Match when={eventsQuery.isError}>
         <h1 class="text-xl font-bold">An error occured while fetching data.</h1>
         <p>Last attempt: {formatDate(eventsQuery.errorUpdatedAt)}</p>
       </Match>
       <Match when={eventsQuery.isSuccess}>
-        <div class="flex justify-end gap-3">
-          <p>Last data update: </p>
+        <div class="flex justify-end gap-1">
+          Last data update:
           <span>
             {eventsQuery.isPlaceholderData ? (
               <FiLoader class="animate-spin h-full aspect-square" />

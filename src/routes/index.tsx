@@ -17,7 +17,7 @@ export default function Home() {
   const eventMutation = createMutation(() => ({
     mutationFn: (newEvent: Event) => {
       return new Promise((resolve) => {
-        setTimeout(() => resolve(newEvent), 5000);
+        setTimeout(() => resolve(newEvent), 0);
       });
     },
     onMutate: async (newEvent: Event) => {
