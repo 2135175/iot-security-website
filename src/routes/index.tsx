@@ -99,13 +99,6 @@ export default function Home() {
               }
             />
           </li>
-          <li>
-            <ModuleActionBtn
-              name="Logs"
-              icon={<FiTerminal size={96} stroke-width={0.5} />}
-              action={() => navigate("/logs")}
-            />
-          </li>
         </ul>
         <h1 class="text-2xl font-bold">Recent Events</h1>
         <RecentEventsTable count={recentEventCount} />
