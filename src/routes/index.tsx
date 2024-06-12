@@ -3,14 +3,7 @@ import RecentEventsTable from "@/components/RecentEventsTable";
 import { Event, ActionOrigin, EventActionType } from "@/hooks/useEvents";
 import { useNavigate } from "@solidjs/router";
 import { createMutation, useQueryClient } from "@tanstack/solid-query";
-import moment from "moment";
-import {
-  FiBell,
-  FiBellOff,
-  FiLock,
-  FiTerminal,
-  FiUnlock,
-} from "solid-icons/fi";
+import { FiBell, FiBellOff, FiLock, FiUnlock } from "solid-icons/fi";
 
 export default function Home() {
   const queryClient = useQueryClient();
@@ -39,8 +32,6 @@ export default function Home() {
       queryClient.invalidateQueries({ queryKey: ["events"] });
     },
   }));
-  const navigate = useNavigate();
-  const recentEventCount = 10;
 
   return (
     <main class="container py-12">
@@ -101,7 +92,7 @@ export default function Home() {
           </li>
         </ul>
         <h1 class="text-2xl font-bold">Recent Events</h1>
-        <RecentEventsTable count={recentEventCount} />
+        <RecentEventsTable />
       </div>
     </main>
   );

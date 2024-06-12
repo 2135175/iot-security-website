@@ -13,11 +13,7 @@ import { createQuery } from "@tanstack/solid-query";
 import { getEvents } from "@/hooks/useEvents";
 import { FiLoader } from "solid-icons/fi";
 
-interface RecentEventsTableProps {
-  count: number;
-}
-
-export default function RecentEventsTable(props: RecentEventsTableProps) {
+export default function RecentEventsTable() {
   const eventsQuery = createQuery(() => ({
     queryKey: ["events", "des", 1],
     queryFn: () => getEvents("des", 1),
