@@ -5,7 +5,7 @@ export const pageSize = 10;
 export async function GET({ params }: APIEvent) {
   console.log(`Request to get log page size`);
 
-  return new Response(JSON.stringify({ size: pageSize }), {
+  return new Response(JSON.stringify({ size: 10 }), {
     status: 200,
     statusText: "Ok",
   });

@@ -43,7 +43,7 @@ export const columns: ColumnDef<Event>[] = [
 export const EventsDataTable = () => {
   const queryClient = useQueryClient();
   const [page, setPage] = createSignal(1);
-  const [sort, setSort] = createSignal<"des" | "asc">("des");
+  const [sort, setSort] = createSignal<"DESC" | "ASC">("DESC");
   const eventsQuery = createQuery(() => ({
     queryKey: ["events", sort(), page()],
     queryFn: () => getEvents(sort(), page()),
