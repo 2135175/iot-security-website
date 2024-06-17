@@ -33,7 +33,5 @@ export async function GET({ params }: APIEvent) {
     })
   );
 
-  console.log(res);
-
   return res;
 }
