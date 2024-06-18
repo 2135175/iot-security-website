@@ -7,7 +7,7 @@ import {
   TableHeader,
   TableRow,
 } from "./ui/table";
-import { For, Match, Switch } from "solid-js";
+import { For, Match, Show, Switch } from "solid-js";
 import { formatDate } from "@/libs/dateUtils";
 import { createQuery } from "@tanstack/solid-query";
 import { getEvents } from "@/hooks/useEvents";
@@ -41,9 +41,16 @@ export default function RecentEventsTable() {
           {formatDate(eventsQuery.dataUpdatedAt)}
         </div>
         <Table>
-          <TableCaption class="text-neutral-200">
-            The last {eventsQuery.data?.events.length} events
-          </TableCaption>
+          <Show when={eventsQuery.data?.events.length}>
+            <TableCaption class="text-neutral-200">
+              <Show
+                when={eventsQuery.data?.events.length == 1}
+                fallback={`The last ${eventsQuery.data?.events.length} events`}
+              >
+                The last event
+              </Show>
+            </TableCaption>
+          </Show>
           <TableHeader>
             <TableRow>
               <TableHead class="text-neutral-200 font-bold">Origin</TableHead>
@@ -54,17 +61,28 @@ export default function RecentEventsTable() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            <For each={eventsQuery.data?.events}>
-              {(event) => (
+            <Show
+              when={eventsQuery.data?.events?.length}
+              fallback={
                 <TableRow>
-                  <TableCell>{event.origin}</TableCell>
-                  <TableCell>{event.eventAction}</TableCell>
-                  <TableCell class="text-right">
-                    {formatDate(event.timestamp)}
+                  <TableCell colSpan={3} class="h-24 text-center">
+                    No results.
                   </TableCell>
                 </TableRow>
-              )}
-            </For>
+              }
+            >
+              <For each={eventsQuery.data?.events}>
+                {(event) => (
+                  <TableRow>
+                    <TableCell>{event.origin}</TableCell>
+                    <TableCell>{event.eventAction}</TableCell>
+                    <TableCell class="text-right">
+                      {formatDate(event.timestamp)}
+                    </TableCell>
+                  </TableRow>
+                )}
+              </For>
+            </Show>
           </TableBody>
         </Table>
       </Match>
