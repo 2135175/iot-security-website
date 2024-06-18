@@ -81,49 +81,53 @@ export const EventsDataTable = () => {
           data={eventsQuery.data?.events}
           columns={columns}
         />
-        <Pagination
-          fixedItems={(eventsQuery.data?.pages ?? 0) > 6}
-          count={eventsQuery.data?.pages ?? 0}
-          page={page()}
-          itemComponent={(props) => (
-            <PaginationItem
-              page={props.page}
-              onMouseOver={() => {
-                queryClient.prefetchQuery({
-                  queryKey: ["events", sort(), props.page],
-                  queryFn: () => getEvents(sort(), props.page),
-                  gcTime: 30 * 1000,
-                });
-              }}
-              onClick={() => setPage(props.page)}
+        <Switch>
+          <Match when={eventsQuery.data?.pages}>
+            <Pagination
+              fixedItems={(eventsQuery.data?.pages ?? 0) > 6}
+              count={eventsQuery.data?.pages ?? 0}
+              page={page()}
+              itemComponent={(props) => (
+                <PaginationItem
+                  page={props.page}
+                  onMouseOver={() => {
+                    queryClient.prefetchQuery({
+                      queryKey: ["events", sort(), props.page],
+                      queryFn: () => getEvents(sort(), props.page),
+                      gcTime: 30 * 1000,
+                    });
+                  }}
+                  onClick={() => setPage(props.page)}
+                >
+                  {props.page}
+                </PaginationItem>
+              )}
+              ellipsisComponent={() => <PaginationEllipsis />}
             >
-              {props.page}
-            </PaginationItem>
-          )}
-          ellipsisComponent={() => <PaginationEllipsis />}
-        >
-          <PaginationPrevious
-            onMouseOver={() => {
-              queryClient.prefetchQuery({
-                queryKey: ["events", sort(), page() - 1],
-                queryFn: () => getEvents(sort(), page() - 1),
-                gcTime: 30 * 1000,
-              });
-            }}
-            onClick={() => setPage(page() - 1)}
-          />
-          <PaginationItems />
-          <PaginationNext
-            onMouseOver={() => {
-              queryClient.prefetchQuery({
-                queryKey: ["events", sort(), page() + 1],
-                queryFn: () => getEvents(sort(), page() + 1),
-                gcTime: 30 * 1000,
-              });
-            }}
-            onClick={() => setPage(page() + 1)}
-          />
-        </Pagination>
+              <PaginationPrevious
+                onMouseOver={() => {
+                  queryClient.prefetchQuery({
+                    queryKey: ["events", sort(), page() - 1],
+                    queryFn: () => getEvents(sort(), page() - 1),
+                    gcTime: 30 * 1000,
+                  });
+                }}
+                onClick={() => setPage(page() - 1)}
+              />
+              <PaginationItems />
+              <PaginationNext
+                onMouseOver={() => {
+                  queryClient.prefetchQuery({
+                    queryKey: ["events", sort(), page() + 1],
+                    queryFn: () => getEvents(sort(), page() + 1),
+                    gcTime: 30 * 1000,
+                  });
+                }}
+                onClick={() => setPage(page() + 1)}
+              />
+            </Pagination>
+          </Match>
+        </Switch>
       </Match>
     </Switch>
   );
@@ -160,9 +164,9 @@ const DataTable = <TData, TValue>(props: TableProps<TData, TValue>) => {
                         {header.isPlaceholder
                           ? null
                           : flexRender(
-                              header.column.columnDef.header,
-                              header.getContext()
-                            )}
+                            header.column.columnDef.header,
+                            header.getContext()
+                          )}
                       </TableHead>
                     );
                   }}
