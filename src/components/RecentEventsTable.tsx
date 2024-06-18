@@ -15,7 +15,7 @@ import { FiLoader } from "solid-icons/fi";
 
 export default function RecentEventsTable() {
   const eventsQuery = createQuery(() => ({
-    queryKey: ["events", "des", 1],
+    queryKey: ["events", "desc", 1],
     queryFn: () => getEvents("DESC", 1),
     refetchInterval: 2 * 60 * 1000,
     deferStream: true,

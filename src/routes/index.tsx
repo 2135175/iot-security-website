@@ -1,7 +1,6 @@
 import ModuleActionBtn from "@/components/ModuleActionBtn";
 import RecentEventsTable from "@/components/RecentEventsTable";
 import { Event, ActionOrigin, EventActionType } from "@/hooks/useEvents";
-import { useNavigate } from "@solidjs/router";
 import { createMutation, useQueryClient } from "@tanstack/solid-query";
 import { FiBell, FiBellOff, FiLock, FiUnlock } from "solid-icons/fi";
 
@@ -14,11 +13,11 @@ export default function Home() {
       });
     },
     onMutate: async (newEvent: Event) => {
-      await queryClient.cancelQueries({ queryKey: ["events", "des", 1] });
+      await queryClient.cancelQueries({ queryKey: ["events", "desc", 1] });
 
-      const prevEvents = queryClient.getQueryData(["events", "des", 1]);
+      const prevEvents = queryClient.getQueryData(["events", "desc", 1]);
 
-      queryClient.setQueryData(["events", "des", 1], (oldData: any) => {
+      queryClient.setQueryData(["events", "desc", 1], (oldData: any) => {
         return { ...oldData, events: [newEvent, ...oldData.events] };
       });
 
@@ -26,7 +25,7 @@ export default function Home() {
     },
     onError: (err, _b, context) => {
       console.log(err);
-      queryClient.setQueryData(["events", "des", 1], context?.prevEvents);
+      queryClient.setQueryData(["events", "desc", 1], context?.prevEvents);
     },
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ["events"] });
